@@ -49,15 +49,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['default_controller'] = 'user';
+$route['default_controller'] = 'user_controller';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-/** USER ROUTES */
-$route['user/'] = 'user/index';
-$route['user/edit'] = 'user/edit/';
-$route['user/create'] = 'user/create';
-$route['user/show'] = 'user/show';
-$route['user/store'] = 'user/store';
-$route['user/update'] = 'user/update';
-$route['user/destroy'] = 'user/destroy';
+include_once('api_routes.php');
+
+/** WEB ROUTES */
+$route['user/index'] = 'user_controller/index';
+$route['user/edit/(:num)'] = 'user_controller/edit/$1';
+$route['user/create'] = 'user_controller/create';
+$route['user/show/(:num)'] = 'user_controller/show/$1';
+$route['user/store']['POST'] = 'user_controller/store';
+$route['user/update/(:num)']['UPDATE'] = 'user_controller/update/$1';
+$route['user/destroy/(:num)']['DELETE'] = 'user_controller/destroy/$1';
+
+
+
+$route['test'] = function(){
+  $test = new \App\Controllers\TestController( new \App\Repositories\UserRepository() );
+    $test->run();
+    die();
+};
+
