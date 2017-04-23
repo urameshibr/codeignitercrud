@@ -2,17 +2,14 @@
 
 namespace App\Services\User;
 
-abstract class GetAllUsers
-{
-    public static $table = 'users';
-    public static $model;
-    public function prepare()
-    {
-        self::$model = $this->model('user_model');
-    }
+use CI_Model;
 
-    public static function run()
+class GetAllUsers extends CI_Model
+{
+    public $table = 'users';
+
+    public function run()
     {
-        return self::$model->get();
+        return $this->db->get('users')->result();
     }
 }

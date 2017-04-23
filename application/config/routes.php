@@ -66,23 +66,18 @@ $route['user/destroy/(:num)']['DELETE'] = 'user_controller/destroy/$1';
 
 
 $route['test'] = function () use ($container) {
-    //$container['TestController'];
-    $string = 'TestController@run';
-    $resolving = explode('@', $string);
-    $controller = $resolving[0];
-    $action = $resolving[1];
-
-    $container[$controller]->$action();
+    $container['TestController']->run();
     die();
 };
 
-/*function endpoint($method = 'GET', $url, $actionController) use ($container)
-{
+/*endpoint('GET', 'test2', 'TestController@test2');
+
+function endpoint($method = 'GET', $url, $actionController){
     $resolving = explode('@', $actionController);
     $controller = $resolving[0];
     $action = $resolving[1];
-    $resolved = $container[$controller]->$action();
-    return $route[$url][$method] = function ()use($container, $resolved) {
-        $container[$resolved];
+
+    return $route[$url][$method] = function () {
+        return $container[$controller]->$action();
     };
 }*/

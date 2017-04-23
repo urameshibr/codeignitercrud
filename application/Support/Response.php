@@ -20,8 +20,6 @@ class Response
             'message' => $message,
             'data' => $data
         ];
-        return die(
-        json_encode($resolved, $code)
-        );
+        echo json_encode($resolved, $code);
     }
 }

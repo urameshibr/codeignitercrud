@@ -10,5 +10,8 @@ $container['UserController'] = function($container){
 $container['TestController'] = function($container){
     return new \App\Controllers\TestController($container['UserRepository']);
 };
+$container['UserModel'] = function(){
+    return new User_model();
+};
 
 return $container;

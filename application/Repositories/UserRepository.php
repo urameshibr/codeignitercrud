@@ -10,9 +10,10 @@ class UserRepository implements UserContract
 {
     public function all()
     {
-        $methods = get_class_methods(UserRepository::class);
-        Response::json('',200,'',$methods);
-        //return GetAllUsers::run();
+        //$methods = get_class_methods(UserRepository::class);
+        //Response::json('',200,'',$methods);
+        $service = new GetAllUsers();
+        return $service->run();
     }
 
     public function show($id)

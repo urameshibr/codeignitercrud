@@ -5,19 +5,20 @@ use App\Support\Response;
 
 class Api_user_controller extends CI_Controller
 {
-    /*private $repository;*/
-    public function __construct(/*UserRepository $repository*/)
+    private $repository;
+    public function __construct()
     {
         parent::__construct();
         $this->load->helper('url');
         $this->load->helper('html');
         $this->load->model('user_model', 'model');
-        /*$this->repository = $repository;*/
+        $container = include APPPATH . 'config/container.php';
+        $this->repository = $container['UserRepository'];
     }
 
     public function index()
     {
-        //$data = $this->repository->all();
+        $data = $this->repository->all();
         //$data = $this->model->all();
         Response::json(true, 200, 'Usuários foram carregados.', $data);
     }

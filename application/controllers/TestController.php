@@ -17,8 +17,13 @@ class TestController
         self::$repository = $repository;
     }
 
-    public static function run()
+    public function run()
     {
         echo 'test controller';
+    }
+
+    public function test2()
+    {
+        echo 'teste 2 funcionando';
     }
 }
