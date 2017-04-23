@@ -2,9 +2,7 @@
 
 namespace App\Services\User;
 
-use CI_Model;
-
-abstract class GetAllUsers extends \CI_Loader
+abstract class GetAllUsers
 {
     public static $table = 'users';
     public static $model;

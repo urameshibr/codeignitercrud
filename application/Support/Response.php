@@ -4,7 +4,7 @@ namespace App\Support;
 
 class Response
 {
-
+    
     /**
      * @param string $message
      * @param $code

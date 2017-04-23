@@ -19,6 +19,6 @@ class TestController
 
     public static function run()
     {
-        echo self::$repository->all();
+        echo 'test controller';
     }
 }

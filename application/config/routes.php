@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-
+$container = require APPPATH . 'config/container.php';
 /*
 | -------------------------------------------------------------------------
 | URI ROUTING
@@ -65,10 +65,24 @@ $route['user/update/(:num)']['UPDATE'] = 'user_controller/update/$1';
 $route['user/destroy/(:num)']['DELETE'] = 'user_controller/destroy/$1';
 
 
+$route['test'] = function () use ($container) {
+    //$container['TestController'];
+    $string = 'TestController@run';
+    $resolving = explode('@', $string);
+    $controller = $resolving[0];
+    $action = $resolving[1];
 
-$route['test'] = function(){
-  $test = new \App\Controllers\TestController( new \App\Repositories\UserRepository() );
-    $test->run();
+    $container[$controller]->$action();
     die();
 };
 
+/*function endpoint($method = 'GET', $url, $actionController) use ($container)
+{
+    $resolving = explode('@', $actionController);
+    $controller = $resolving[0];
+    $action = $resolving[1];
+    $resolved = $container[$controller]->$action();
+    return $route[$url][$method] = function ()use($container, $resolved) {
+        $container[$resolved];
+    };
+}*/

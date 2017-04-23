@@ -1,11 +1,4 @@
 <?php
-// ignore it
-function endpoint($method,$url, $actionController)
-{
-    $resolved = $actionController;
-    if( strpos($actionController, '@') ) $resolved = str_replace('@','/',$resolved);
-    return $route[$url][$method] = "{$resolved}";
-}
 
 /** API ROUTES */
 $route['api/user/all']                      = 'api/api_user_controller/index';
